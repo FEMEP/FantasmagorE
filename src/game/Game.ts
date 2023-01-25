@@ -1,5 +1,5 @@
 export class Game {
-    public users: { username: string, lastPing: number, cards: Card[] }[] = []
+    public users: User[] = []
     private grid: Card[] = []
 
     constructor(username: string) {

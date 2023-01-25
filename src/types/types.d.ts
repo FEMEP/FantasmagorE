@@ -9,7 +9,9 @@ type Card = {
 }
 
 type User = {
-    
+    username: string
+    lastPing: number
+    cards: Card[]
 }
 
 type Profile = {
