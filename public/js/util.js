@@ -13,7 +13,7 @@ export default class util {
                 method: "POST",
                 headers: { "Content-Type": "application/json; charset=UTF-8" },
                 body: JSON.stringify({
-                    string: dataURL,
+                    base64: dataURL,
                     completed: true,
                 })
             }).then(async res => id = await res.text())
@@ -22,7 +22,7 @@ export default class util {
                 method: "POST",
                 headers: { "Content-Type": "application/json; charset=UTF-8" },
                 body: JSON.stringify({
-                    string: dataURL.slice(0, 50000),
+                    base64: dataURL.slice(0, 50000),
                     completed: false,
                 })
             }).then(async res => id = await res.text())
@@ -32,7 +32,7 @@ export default class util {
                     method: "POST",
                     headers: { "Content-Type": "application/json; charset=UTF-8" },
                     body: JSON.stringify({
-                        string: dataURL.slice(i, i + 50000),
+                        base64: dataURL.slice(i, i + 50000),
                         completed: !(i + 50000 < dataURL.length),
                     })
                 })
@@ -62,13 +62,13 @@ export default class util {
      * @returns {Promise<string> | null} `dataURL` **OR** `null` if not found
      */
     static async getImg(id) {
-        const img = { id: id, string: "", completed: false }
+        const img = { id: id, base64: "", completed: false }
 
         for (let i = 0; !img.completed; i += 100000) {
             let status = await fetch(`/api/img/${id}/${i}`, { method: "GET" }).then(async res => {
                 if (res.ok) {
                     let body = await res.json()
-                    img.string += body.string
+                    img.base64 += body.base64
                     if (body.completed) {
                         img.completed = true
                     }
@@ -78,7 +78,7 @@ export default class util {
         }
 
         if (img.completed) {
-            return img.string
+            return img.base64
         } else return null
     }
     /**
@@ -101,14 +101,7 @@ export default class util {
     static async criarConta(info) {
         let resposta
 
-        await fetch("/api/account/validate", {
-            method: "POST",
-            headers: { "Content-Type": "application/json; charset=UTF-8" },
-            body: JSON.stringify({
-                email: info.email,
-                username: info.username,
-            }),
-        }).then(async (res) => {
+        await fetch(`/api/account/validate/${info.username}`, { method: 'GET' }).then(async (res) => {
             if (res.ok) resposta = await res.text()
             else resposta = false
         })
@@ -120,7 +113,7 @@ export default class util {
                     headers: { "Content-Type": "application/json; charset=UTF-8" },
                     body: JSON.stringify(info),
                 }).then(async (res) => {
-                    if (res.status == 202) {
+                    if (res.ok) {
                         util.save(await res.json())
                         window.location.href = "../pages/account.html"
                     }
@@ -195,7 +188,7 @@ export default class util {
             outputImage.height = outputHeight
 
             outputImage.getContext("2d").drawImage(inputImage, outputX, outputY)
-            resolve(outputImage.toDataURL("image/png", 0.7))
+            resolve(outputImage.toDataURL("image/png", 0.5))
         })
     }
 
