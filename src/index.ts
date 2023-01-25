@@ -6,8 +6,7 @@ import room from './routes/room.js'
 import connection from './routes/connection.js'
 
 const mongodb = await new MongoClient(process.env.URL).connect()
-export const rooms = mongodb.db('default').collection('rooms')
-export const users = mongodb.db('default').collection('users')
+export const users = mongodb.db('default').collection<User>('users')
 
 const app = express()
 app.use(cors())

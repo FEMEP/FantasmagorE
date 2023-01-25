@@ -9,3 +9,10 @@ type Card = {
     life: number,
     damage: number
 }
+
+type User = {
+    id: string
+    username: string
+    pass: string
+    picture: string
+}
