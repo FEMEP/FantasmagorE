@@ -115,7 +115,6 @@ export default class util {
                 }).then(async (res) => {
                     if (res.ok) {
                         util.save(await res.json())
-                        window.location.href = "../pages/account.html"
                     }
                 })
                 break
