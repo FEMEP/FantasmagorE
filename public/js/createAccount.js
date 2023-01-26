@@ -4,7 +4,8 @@ document.querySelector('form button').addEventListener("click", async e => {
     let newAccountInfos = {
         username: document.querySelector('#create-username').value,
         pass: document.querySelector('#create-username').value,
-        passConfirm: document.querySelector('#create-username').value
+        passConfirm: document.querySelector('#create-username').value,
+        profilePic: true
     }
 
     let validInfos = util.validateUsername(newAccountInfos.username);
@@ -12,7 +13,10 @@ document.querySelector('form button').addEventListener("click", async e => {
 
     if (validInfos == true) {
         delete newAccountInfos.passConfirm;
-        await util.criarConta(newAccountInfos);
+        await util.criarConta(newAccountInfos).then(function(){
+            localStorage.setItem('isLogged', true);
+            window.location.href = "../index.html";
+        });
     } else {
         util.errorMessage(validInfos);
     }
