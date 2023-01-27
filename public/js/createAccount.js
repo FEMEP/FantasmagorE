@@ -13,12 +13,7 @@ document.querySelector('form button').addEventListener("click", async e => {
 
     if (validInfos == true) {
         delete newAccountInfos.passConfirm;
-        await util.criarConta(newAccountInfos).then(function(){
-            localStorage.setItem('isLogged', true);
-            window.location.href = "../index.html";
-        });
-    } else {
-        util.errorMessage(validInfos);
+        await util.criarConta(newAccountInfos);
     }
 
 })

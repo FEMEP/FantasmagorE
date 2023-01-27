@@ -17,4 +17,9 @@ document.querySelector('#logbutton').addEventListener("click", e =>{
         username: document.querySelector('#username').value,
         pass: document.querySelector('#password').value
     }
+
+    util.enviarLogin(userInfos.username, userInfos.pass).then(async res => {
+        util.save(await res.jason())
+        localStorage.setItem('isLogged', true);
+    });
 })

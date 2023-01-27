@@ -108,6 +108,7 @@ export default class util {
                 }).then(async (res) => {
                     if (res.ok) {
                         util.save(await res.json())
+                        window.location.href = '../index.html'
                     }
                 })
             } else window.alert("username usado")
@@ -225,7 +226,7 @@ export default class util {
                 message = "Preencha todos os campos corretamente"
                 break;
             default:
-                message = "Você achou um erro no site! Por favor nos informe dele para que possamos corrigi-lo!"
+                message = errorType
                 break
         }
 
@@ -237,7 +238,7 @@ export default class util {
             messageBox.addEventListener("click", e => {
                 e.target.style.display = e.target.style.display == "flex" ? "none" : "flex"
             })
-            document.querySelector("main").appendChild(messageBox)
+            document.querySelector("body").appendChild(messageBox)
 
             messageBox.innerText = message
         } else {
