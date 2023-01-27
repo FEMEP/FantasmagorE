@@ -9,13 +9,16 @@
     <title>Criar Conta</title>
 </head>
 <body>
-    <button><a href="../index.html">Voltar</a></button>
+    <!-- <a href="../index.html">Voltar</a> -->
     <main>
-        <form action="">
-            <figure>
-                <label for="profile-pic">Foto de Perfil</label>
-                <input type="file" id="profile-pic">
-            </figure>
+        <form>
+            <label for="profile-pic">
+                <figure id="profie-pic">
+                    <img src="../images/default_profile_picture.png" alt="escolher-foto-perfil">
+                </figure>
+                <p>Foto de Perfil</p>
+            </label>
+            <input type="file" id="profile-pic">
 
             <input type="email" placeholder="Username" id="create-username">
             <input type="password" placeholder="Password" id="create-password">

@@ -9,30 +9,36 @@
         <script defer src="js/index.js" type="module"></script>
     </head>
     <body>
-        <main>
-            <div id="logBox">
-                <div class="container">
-                    <figure>
-                        <img src="images/default_profile_picture.png" alt="profile_pic">
-                        <figcaption>
-                            <p>Foto de Perfil 📸</p>
-                        </figcaption>
-                        <h1>Fantasmagore</h1>
-                    </figure>
-                </div>
-
-                <div class="container">
-                    <form action="">
-                        <div id="inputs">
-                            <input id="username" type="email" placeholder="Username">
-                            <input id="password" type="password" placeholder="Senha">
-                            <button id="logbutton" type="button">Login</button>
-                            <p><a href="pages/createAccount.html">Não tem uma conta? Crie uma Aqui!</a></p>
-                        </div>
-                    </form>
-                </div>
+        <div id="logBox">
+            <div class="container">
+                <figure>
+                    <img src="images/default_profile_picture.png" alt="profile_pic">
+                    <figcaption>
+                        <p>Foto de Perfil 📸</p>
+                    </figcaption>
+                    <h1>Fantasmagore</h1>
+                </figure>
+                <div id="line"></div>
             </div>
-        </main>
+
+            <div class="container">
+                <form id="login">
+                    <div class="inputs">
+                        <input id="username" type="email" placeholder="Username">
+                        <input id="password" type="password" placeholder="Senha">
+                        <button id="logbutton" type="button">Login</button>
+                        <p><a href="pages/createAccount.html">Não tem uma conta? Crie uma Aqui!</a></p>
+                    </div>
+                </form>
+
+                <form id="roomSearch">
+                    <div class="inputs">
+                        <input type="text" placeholder="ID da Sala">
+                        <button>Entrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
 
         <!-- <label id="roomId">
             Insira o ID da sala

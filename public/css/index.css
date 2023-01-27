@@ -23,17 +23,23 @@ div.container {
     align-items: center;
 }
 
+#line {
+    border-right: 1px solid black;
+    height: 50%;
+    position: absolute;
+}
+
 form {
     width: 100%;
     height: 100%;
-    display: flex;
-    justify-content: left;
-    align-items: center;
+    display: none;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
 }
 
-div #inputs {
-    height: 15em;
-    border-left: 1px black solid;
+div .inputs {
+    height: max-content;
     width: max-content;
     text-align: center;
     padding: 3em;
@@ -80,6 +86,18 @@ a {
 
 a:hover {
     color: rgb(231, 231, 231);
+}
+
+/* --------------- Procurar Sala ------------------ */
+
+div#roomSearch {
+    border-left: 1px solid black;
+    background-color: aquamarine;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    width: 100%;
+    height: 100%;
 }
 
 /* --------------- Foto de perfil ---------------- */
@@ -137,14 +155,24 @@ figcaption:hover {
         justify-content: center;
     }
 
-    div #inputs {
-        height: 15em;
-        border-left: 1px black solid;
+    form {
+        width: 100%;
+        height: 100%;
+        display: none;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    div#line {
+        display: none;
+    }
+
+    div .inputs {
+        height: max-content;
         width: max-content;
         text-align: center;
-        margin: 0 auto;
-        border: 0;
-        padding: 0;
+        padding: 1.5em;
     }
 
     figure {
