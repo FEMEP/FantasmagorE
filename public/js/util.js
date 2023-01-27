@@ -99,15 +99,8 @@ export default class util {
      * @param {{username: string, pass: string, picture?: string}} info
      */
     static async criarConta(info) {
-        let resposta
-
         await fetch(`/api/account/validate/${info.username}`, { method: 'GET' }).then(async (res) => {
-            if (res.ok) resposta = await res.text()
-            else resposta = false
-        })
-
-        switch (resposta) {
-            case false:
+            if (res.ok) {
                 await fetch("/api/login/create", {
                     method: "POST",
                     headers: { "Content-Type": "application/json; charset=UTF-8" },
@@ -117,11 +110,8 @@ export default class util {
                         util.save(await res.json())
                     }
                 })
-                break
-            case "username":
-                window.alert("username usado")
-                break
-        }
+            } else window.alert("username usado")
+        })
     }
     /**
      * @param {string} src dataURL

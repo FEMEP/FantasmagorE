@@ -3,9 +3,9 @@ import { users, images } from '../index.js'
 
 export default Router().get('/validate/:username', async (req, res) => {
     if (await users.findOne({ username: req.params.username })) {
-        res.send('username')
+        res.status(401).send()
     } else {
-        res.status(404).send()
+        res.send()
     }
 }).post('/edit', async (req, res) => {
     const user = await users.findOne({ username: req.body.username, pass: req.body.pass })
