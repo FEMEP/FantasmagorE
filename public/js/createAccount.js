@@ -3,8 +3,8 @@ import util from "./util.js"
 document.querySelector('form button').addEventListener("click", async e => {
     let newAccountInfos = {
         username: document.querySelector('#create-username').value,
-        pass: document.querySelector('#create-username').value,
-        passConfirm: document.querySelector('#create-username').value,
+        pass: document.querySelector('#create-password').value,
+        passConfirm: document.querySelector('#confirm-password').value,
         profilePic: true
     }
 
@@ -15,5 +15,4 @@ document.querySelector('form button').addEventListener("click", async e => {
         delete newAccountInfos.passConfirm;
         await util.criarConta(newAccountInfos);
     }
-
 })

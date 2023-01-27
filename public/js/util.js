@@ -86,14 +86,7 @@ export default class util {
      * @param {string} pass
      */
     static enviarLogin(username, pass) {
-        return fetch("/api/login", {
-            method: "POST",
-            headers: { "Content-Type": "application/json; charset=UTF-8" },
-            body: JSON.stringify({
-                username: username,
-                pass: pass,
-            }),
-        })
+        return fetch(`/api/login/${username}/${pass}`, { method: "GET" })
     }
     /**
      * @param {{username: string, pass: string, picture?: string}} info

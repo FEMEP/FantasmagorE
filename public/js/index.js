@@ -12,14 +12,17 @@ if (isLogged == 'true') {
     document.querySelector('figure h1').innerHTML = 'FantasmagorE'
 }
 
-document.querySelector('#logbutton').addEventListener("click", e =>{
+document.querySelector('#logbutton').addEventListener("click", e => {
     let userInfos = {
         username: document.querySelector('#username').value,
         pass: document.querySelector('#password').value
     }
 
     util.enviarLogin(userInfos.username, userInfos.pass).then(async res => {
-        util.save(await res.jason())
-        localStorage.setItem('isLogged', true);
-    });
+        if (res.ok) {
+            util.save(await res.json())
+            localStorage.setItem('isLogged', true)
+            window.open('../index.html', '_self')
+        }
+    })
 })
