@@ -11,7 +11,7 @@ export default Router().post('/', async (req, res) => {
 		completed: false
 	})
 	setTimeout(async () => {
-		images.findOneAndDelete({ completed: false })
+		await images.findOneAndDelete({ completed: false })
 	}, 5 * 60 * 1000)
 	res.send(id)
 }).post('/single', async (req, res) => {
@@ -27,12 +27,12 @@ export default Router().post('/', async (req, res) => {
 	if (!req.body.completed) {
 		//continuar upload
 		let img = await images.findOne({ id: req.params.id })
-		images.updateOne({ id: img.id }, { $set: { base64: img.base64 + req.body.base64 } })
+		await images.updateOne({ id: img.id }, { $set: { base64: img.base64 + req.body.base64 } })
 		res.send(img.id)
 	} else if (req.body.completed) {
 		//finalizar upload
 		let img = await images.findOne({ id: req.params.id })
-		images.updateOne({ id: img.id }, { $set: { base64: img.base64 + req.body.base64, completed: true } })
+		await images.updateOne({ id: img.id }, { $set: { base64: img.base64 + req.body.base64, completed: true } })
 		res.send(req.params.id)
 	} else {
 		res.status(400).send()
@@ -41,9 +41,10 @@ export default Router().post('/', async (req, res) => {
 	let img = await images.findOne({ id: req.params.id })
 
 	if (img) {
+		const part = Number(req.params.part)
 		res.send({
-			string: img.base64.slice(Number(req.params.part), Number(req.params.part) + 100000),
-			completed: !(Number(req.params.part) + 100000 < img.base64.length)
+			base64: img.base64.slice(part, part + 100000),
+			completed: !(part + 100000 < img.base64.length)
 		})
 	} else {
 		res.status(404).send()

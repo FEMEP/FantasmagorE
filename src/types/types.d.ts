@@ -6,6 +6,8 @@ type Card = {
     id: string
     x: number
     y: number
+    type: string
+    owner: string
 }
 
 type User = {
